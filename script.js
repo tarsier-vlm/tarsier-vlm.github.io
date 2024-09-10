@@ -13,8 +13,11 @@ const loading = document.getElementById('loading');
 loading.style.display = 'block';
 
 // Load video URLs and thumbnail URLs from a local file
-fetch('https://raw.githubusercontent.com/tarsier-vlm/tarsier-vlm.github.io/main/video_data.json')
-    .then(response => response.json())
+fetch('video_data.json')
+    .then(response => {
+        console.log("Fetched video data.")
+        response.json()
+    })
     .then(data => {
         categorized_data = [data['Animation'], data['Live-action'], data['Stock'], data['Shorts'], data['YouTube']]
         gallery_list = [animationGallery, liveactionGallery, stockGallery, shortsGallery, youtubeGallery]
@@ -31,7 +34,6 @@ fetch('https://raw.githubusercontent.com/tarsier-vlm/tarsier-vlm.github.io/main/
                 thumbnail.src = `thumbnails/${video.idx}.jpg`;
                 thumbnail.alt = `Video ${index}`;
                 thumbnail.className = 'img-fluid video-thumbnail';
-                thumbnail.setAttribute('data-video', video.video_url);
                 thumbnail.setAttribute('data-idx', video.idx);
                 thumbnail.setAttribute('data-descriptions', JSON.stringify(video.descriptions));
     
@@ -44,10 +46,9 @@ fetch('https://raw.githubusercontent.com/tarsier-vlm/tarsier-vlm.github.io/main/
         const videoThumbnails = document.querySelectorAll('.video-thumbnail');
         videoThumbnails.forEach(thumbnail => {
             thumbnail.addEventListener('click', () => {
-                const videoUrl = thumbnail.getAttribute('data-video');
                 const videoIdx = thumbnail.getAttribute('data-idx');
                 const descriptions = JSON.parse(thumbnail.getAttribute('data-descriptions'));
-                videoPlayer.querySelector('source').src = videoUrl;
+                videoPlayer.querySelector('source').src = `videos/${videoIdx}.mp4`;
                 videoPlayer.load();
 
                 // Clear previous descriptions
@@ -77,4 +78,3 @@ fetch('https://raw.githubusercontent.com/tarsier-vlm/tarsier-vlm.github.io/main/
         loading.style.display = 'none';
     }
 )
-
