@@ -31,7 +31,7 @@ if __name__ == "__main__":
             middle_frame = vr[video_length//2]
             middle_frame = Image.fromarray(middle_frame.asnumpy())
             middle_frame = pad_to_square(middle_frame).resize((256, 256))
-            output_file = f"thumbnails/{idx}.jpg"
+            output_file = f"../thumbnails/{idx}.jpg"
             middle_frame.save(output_file)
             print(f"Saved: {output_file}")
             output_data.append({

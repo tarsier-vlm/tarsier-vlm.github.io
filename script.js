@@ -14,10 +14,7 @@ loading.style.display = 'block';
 
 // Load video URLs and thumbnail URLs from a local file
 fetch('video_data.json')
-    .then(response => {
-        console.log("Fetched video data.")
-        response.json()
-    })
+    .then(response => response.json())
     .then(data => {
         categorized_data = [data['Animation'], data['Live-action'], data['Stock'], data['Shorts'], data['YouTube']]
         gallery_list = [animationGallery, liveactionGallery, stockGallery, shortsGallery, youtubeGallery]
