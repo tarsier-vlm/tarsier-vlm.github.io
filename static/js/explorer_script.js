@@ -13,7 +13,7 @@ const loading = document.getElementById('loading');
 loading.style.display = 'block';
 
 // Load video URLs and thumbnail URLs from a local file
-fetch('static/data/video_data.json.json')
+fetch('static/data/video_data.json')
     .then(response => response.json())
     .then(data => {
         categorized_data = [data['Animation'], data['Live-action'], data['Stock'], data['Shorts'], data['YouTube']]
