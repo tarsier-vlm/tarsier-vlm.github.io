@@ -1,1 +1,1 @@
-# Website for DREAM-1K Explorer
+# Website for DREAM-1K Benchmark
