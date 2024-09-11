@@ -32,6 +32,7 @@ fetch('video_data.json')
                 thumbnail.alt = `Video ${index}`;
                 thumbnail.className = 'img-fluid video-thumbnail';
                 thumbnail.setAttribute('data-idx', video.idx);
+                thumbnail.setAttribute('data-url', video.video_url);
                 thumbnail.setAttribute('data-descriptions', JSON.stringify(video.descriptions));
     
                 col.appendChild(thumbnail);
@@ -45,7 +46,8 @@ fetch('video_data.json')
             thumbnail.addEventListener('click', () => {
                 const videoIdx = thumbnail.getAttribute('data-idx');
                 const descriptions = JSON.parse(thumbnail.getAttribute('data-descriptions'));
-                videoPlayer.querySelector('source').src = `videos/${videoIdx}.mp4`;
+                // videoPlayer.querySelector('source').src = `videos/${videoIdx}.mp4`;
+                videoPlayer.querySelector('source').src = thumbnail.getAttribute('data-url');
                 videoPlayer.load();
 
                 // Clear previous descriptions
